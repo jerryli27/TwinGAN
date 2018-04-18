@@ -115,7 +115,7 @@ Twin-GAN的功能不止于此。由于二三次元的图片共享同一个embedd
 
 注：本文为了方便理解，简化了许多论点，并不严禁，还请注意和谅解。对技术细节有兴趣的可以读引用部分的论文。
 
-Link to the English Version
+[Link to the English Version](../../README.md)
 
 ## 引用
 
