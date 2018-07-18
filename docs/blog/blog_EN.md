@@ -128,7 +128,7 @@ The related paper and website may be updated in the future. Please see my Englis
 
 P.P.S Some arguments in the paper are overly simplified for easier understanding. Please read the citations below if you're interested in the technical details.
 
-[中文版链接](blog_CH.md)
+中文版链接
 
 ## Citations
 
