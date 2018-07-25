@@ -2,7 +2,7 @@
 
 We provide two pre-trained models: [human to anime](https://drive.google.com/open?id=1dXfqAODQxB2uNhyQANtZICAjwhNMWnbl) and [human to cats](https://drive.google.com/open?id=1UJEqlH_1sfdmWs6MXKV4H69NGad0rdUB)
 
-Run the following command to translate the demo inputs.
+Run the following command to translate the demo inputs. Note that this command works the best for models trained using twingan. You'll have to change this a little to make it work with image_generation models.
 
 ```
 python inference/image_translation_infer.py \

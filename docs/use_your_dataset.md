@@ -17,7 +17,7 @@ python datasets/convert_image_only.py \
 
 ## Use your converted tfrecord
 
-Now try your dataset out! Point `dataset_dir` to your dataset. For example if you want to train a PGGAN on your dataset, use the following command.
+Now try your dataset out! Point `dataset_dir` to your dataset. For example if you want to train a PGGAN on your dataset, use the following command. Note this code is just an example. See [Train your model from scratch](training.md) for details on how to train the model.
 
 ```
 python image_generation.py

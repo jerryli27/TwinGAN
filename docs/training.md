@@ -32,6 +32,9 @@ python pggan_runner.py
 Training to resolution 32x32 takes approximately half a day depending on the hardware. Full training to 256x256 can take up to a week or two.
 
 ## PGGAN
+
+Different from TwinGAN, PGGAN is a generative model. That is to say, there is no "source image". It generates real-looking images from scratch conditioned on a random vector. Please read the [PGGAN paper](https://arxiv.org/abs/1710.10196) for more details.
+
 An example PGGAN training script is shown below:
 
 ```

@@ -98,7 +98,13 @@ class ImageInferer(object):
 
 def main(_):
   inferer = ImageInferer()
-  outputs, image_paths = inferer.infer(FLAGS.input_image_path, return_image_paths=True)
+  if FLAGS.input_image_path:
+    outputs, image_paths = inferer.infer(FLAGS.input_image_path, return_image_paths=True)
+  else:
+    print('Generating images conditioned on random vector.')
+    assert FLAGS.num_output >= 0, 'you have to specify the `num_output` flag for non-translational generators.'
+    outputs, image_paths = inferer.infer(FLAGS.input_image_path, return_image_paths=True, num_output=FLAGS.num_output)
+
   if isinstance(outputs, list):
     util_io.touch_folder(FLAGS.output_image_path)
     for i, output in enumerate(outputs):
@@ -109,7 +115,10 @@ def main(_):
 
 if __name__ == '__main__':
   tf.flags.DEFINE_string('input_image_path', None,
-                         'Path to the input image (or directory containing images) used for inference.')
+                         'Path to the input image (or directory containing images) used for inference.'
+                         'Used for image translation model e.g. TwinGAN')
+  tf.flags.DEFINE_integer('num_output', None,
+                          'Number of outputs. Used for generative model, e.g. PGGAN or other kinds of GANs.')
   tf.flags.DEFINE_string('output_image_path', None,
                          'Path to output the output image (or directory).')
   tf.flags.mark_flags_as_required(['output_image_path'])
