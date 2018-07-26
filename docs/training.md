@@ -9,7 +9,7 @@ An example TwinGAN training script is shown below:
 # if you would like to run each training stage manually.
 python pggan_runner.py
 --program_name=twingan
---dataset_name="celeba"
+--dataset_name="image_only"
 --dataset_dir="./data/celeba/"
 --unpaired_target_dataset_name="anime_faces"
 --unpaired_target_dataset_dir="./data/anime_faces/"
@@ -40,7 +40,7 @@ An example PGGAN training script is shown below:
 ```
 python pggan_runner.py
 --program_name=image_generation
---dataset_name="celeba"
+--dataset_name="image_only"
 --dataset_dir="./data/celeba/"
 --dataset_use_target=True
 --dataset_split_name=train
@@ -91,4 +91,3 @@ Please take a look at flag definitions in [image_generation.py](/image_generatio
 #### Can I use my dataset?
 
 Please take a look at [use your dataset](use_your_dataset.md).
-
