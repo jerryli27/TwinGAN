@@ -10,6 +10,9 @@ An example TwinGAN training script is shown below:
 python pggan_runner.py
 --program_name=twingan
 --dataset_name="image_only"
+# Assume you have data like 
+# ./data/celeba/train-00000-of-00100.tfrecord,  
+# ./data/celeba/train-00001-of-00100.tfrecord ...
 --dataset_dir="./data/celeba/"
 --unpaired_target_dataset_name="anime_faces"
 --unpaired_target_dataset_dir="./data/anime_faces/"
@@ -41,6 +44,9 @@ An example PGGAN training script is shown below:
 python pggan_runner.py
 --program_name=image_generation
 --dataset_name="image_only"
+# Assume you have data like 
+# ./data/celeba/train-00000-of-00100.tfrecord,  
+# ./data/celeba/train-00001-of-00100.tfrecord ...
 --dataset_dir="./data/celeba/"
 --dataset_use_target=True
 --dataset_split_name=train

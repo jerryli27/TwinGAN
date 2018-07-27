@@ -1,5 +1,7 @@
 # Datasets
 
+We use tfrecord format data for this project.
+
 ## Celeba
 
 See [convert_celeba.py](/datasets/convert_celeba.py) for how to download and convert the dataset.

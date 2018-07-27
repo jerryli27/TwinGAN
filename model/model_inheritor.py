@@ -198,12 +198,12 @@ tf.flags.DEFINE_string(
   'dataset_split_name', 'train', 'The name of the train/test split.')
 
 tf.flags.DEFINE_string(
-  'dataset_dir', '', 'The directory where the dataset files are stored.')
+  'dataset_dir', '', 'The directory where the dataset files are stored. e.g. A folder containing tfrecords.')
 
 tf.flags.DEFINE_string(
   'unpaired_target_dataset_name', '',
-  'The name of the target dataset to load. This means that the source dataset with name `FLAGS.dataset_name` will be in'
-  'a separate batch and there is no pairing between source and target.')
+  '(Optional) The name of the target dataset to load. This means that the source dataset with name '
+  '`FLAGS.dataset_name` will be in a separate batch and there is no pairing between source and target.')
 
 tf.flags.DEFINE_string(
   'unpaired_target_dataset_dir', '',
