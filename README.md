@@ -5,12 +5,6 @@
 ![search_engine](docs/images/AX18_TwinGAN-17.png)
 ![search_engine](docs/images/AX18_TwinGAN-18.png)
 
-Extra materials:
-
-[Presentation Slides at Anime Expo 2018](https://docs.google.com/presentation/d/1PWYFDYKzwiyK4ajBHl9N7GIS_WQ-SSIjCh50YRLqgNM/edit?usp=sharing)
-
-Technical report coming soon!
-
 ## Use Pretrained Model.
 
 For a pretrained model, you can download it [here](https://drive.google.com/open?id=1dXfqAODQxB2uNhyQANtZICAjwhNMWnbl):
@@ -33,15 +27,21 @@ The `input_image_path` can be either one single image or a path containing image
 
 Download CelebA and the Getchu dataset by following the [datasets guide](docs/datasets.md). Then train your model using script from the [training guide](docs/training.md).
 
-## Technical report.
+## Blog and Technical report.
 
-Please refer to the [blog](docs/blog/blog_EN.md) at the moment. A more technical report will be shared soon!
+An English [blog](docs/blog/blog_EN.md) and a [Chinese 中文 blog](docs/blog/blog_CH.md) are published in early April 2018 and are available for readers with less technical background.
+
+Please refer to [technical report](docs/tech_report/twingan.pdf) for details on the network structure and losses. The report is still work in progress.
+
+Extra materials:
+
+[Presentation Slides at Anime Expo 2018](https://docs.google.com/presentation/d/1PWYFDYKzwiyK4ajBHl9N7GIS_WQ-SSIjCh50YRLqgNM/edit?usp=sharing)
 
 ## Related works
 
-Our idea of using adaptive normalization parameters for image translation is not unique. To the best of our knowledge, at least two more work have similar ideas: [MUNIT](https://arxiv.org/abs/1804.04732) and [EG-UNIT](https://arxiv.org/abs/1805.11145). Our model is developed around the same time period with these models. 
+Our idea of using adaptive normalization parameters for image translation is not unique. To the best of our knowledge, at least two more work have similar ideas: [MUNIT](https://arxiv.org/abs/1804.04732) and [EG-UNIT](https://arxiv.org/abs/1805.11145). Our model is developed around the same time period as these models. 
 
-Some key differences between our model and the two mentioned are -- we find UNet to be extremely helpful in maintaining semantic correspondence across domain, and we found that tying all convolution filter weights speeds up training while maintaining the same output quality.
+Some key differences between our model and the two mentioned are -- we find UNet to be extremely helpful in maintaining semantic correspondence across domain, and we found that sharing all convolution filter weights speeds up training while maintaining the same output quality.
 
 
 ## Reference
