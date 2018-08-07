@@ -19,16 +19,17 @@ python pggan_runner.py
 --train_dir="./checkpoints/twingan_faces/"
 --dataset_split_name=train
 --preprocessing_name="danbooru"
---resize_mode=RANDOM_CROP
+--resize_mode=RESHAPE
 --do_random_cropping=True
 --learning_rate=0.0001
 --learning_rate_decay_type=fixed
 --is_training=True
 --generator_network="pggan"
---num_images_per_resolution=50000
+--num_images_per_resolution=300000
 --loss_architecture=dragan
 --pggan_max_num_channels=256
 --generator_norm_type=batch_renorm
+--hw_to_batch_size="{4: 8, 8: 8, 16: 8, 32: 8, 64: 8, 128: 4, 256: 3, 512: 2}"
 --use_ttur=True
 ```
 
@@ -36,7 +37,7 @@ Training to resolution 32x32 takes approximately half a day depending on the har
 
 ## PGGAN
 
-Different from TwinGAN, PGGAN is a generative model. That is to say, there is no "source image". It generates real-looking images from scratch conditioned on a random vector. Please read the [PGGAN paper](https://arxiv.org/abs/1710.10196) for more details.
+Different from TwinGAN, PGGAN is a generative model. That is to say, there is no "source image". It generates real-looking images from scratch conditioned on a random vector. Please read the [PGGAN paper](https://arxiv.org/abs/1710.10196) for more details. Note that we do not provide a completely faithful reproduction of the PGGAN paper. We do borrow their network structure as-is.
 
 An example PGGAN training script is shown below:
 
@@ -52,15 +53,15 @@ python pggan_runner.py
 --dataset_split_name=train
 --train_dir="./checkpoints/pggan_celeba/"
 --preprocessing_name="danbooru"
---resize_mode=RANDOM_CROP
+--resize_mode=RESHAPE
 --do_random_cropping=True
 --learning_rate=0.0001
 --learning_rate_decay_type=fixed
 --is_training=True
 --generator_network="pggan"
---max_number_of_steps=50000
+--max_number_of_steps=600000
 --loss_architecture=dragan
---pggan_max_num_channels=256
+--pggan_max_num_channels=512  # 256 also works emperically.
 --generator_norm_type=batch_renorm
 --use_ttur=True
 ```
@@ -97,3 +98,6 @@ Please take a look at flag definitions in [image_generation.py](/image_generatio
 #### Can I use my dataset?
 
 Please take a look at [use your dataset](use_your_dataset.md).
+
+#### Why RANDOM_CROP?
+

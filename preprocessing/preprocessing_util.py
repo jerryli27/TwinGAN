@@ -17,7 +17,7 @@ import numpy as np
 import tensorflow as tf
 
 RESIZE_MODE_NONE = 0
-RESIZE_MODE_PAD = 1
+RESIZE_MODE_PAD = 1  # First pad image to a square, then reshape to given height and width.
 RESIZE_MODE_CROP = 2  # Crop the center part to given height and width.
 RESIZE_MODE_RESHAPE = 3
 RESIZE_MODE_RANDOM_CROP = 4  # Crop at a random location.
