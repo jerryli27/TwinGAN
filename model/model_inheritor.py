@@ -222,7 +222,8 @@ tf.flags.DEFINE_integer(
   'train_image_size', None, 'Train image size')
 
 tf.flags.DEFINE_boolean(
-  'do_random_cropping', False, 'If true, randomly crop the input images for data augmentation.')
+  'do_random_cropping', False, 'If true, randomly crop the input images to 0.8 times of its original size for data '
+                               'augmentation. Note that this is done BEFORE resizing in `resize_mode`.')
 
 tf.flags.DEFINE_integer('max_number_of_steps', None,
                         'The maximum number of training steps.')

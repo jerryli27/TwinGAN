@@ -25,12 +25,13 @@ python pggan_runner.py
 --learning_rate_decay_type=fixed
 --is_training=True
 --generator_network="pggan"
+--use_unet=True
 --num_images_per_resolution=300000
 --loss_architecture=dragan
+--gradient_penalty_lambda=0.25
 --pggan_max_num_channels=256
 --generator_norm_type=batch_renorm
 --hw_to_batch_size="{4: 8, 8: 8, 16: 8, 32: 8, 64: 8, 128: 4, 256: 3, 512: 2}"
---use_ttur=True
 ```
 
 Training to resolution 32x32 takes approximately half a day depending on the hardware. Full training to 256x256 can take up to a week or two.
@@ -61,9 +62,9 @@ python pggan_runner.py
 --generator_network="pggan"
 --max_number_of_steps=600000
 --loss_architecture=dragan
+--gradient_penalty_lambda=0.25
 --pggan_max_num_channels=512  # 256 also works emperically.
 --generator_norm_type=batch_renorm
---use_ttur=True
 ```
 
 
@@ -98,6 +99,4 @@ Please take a look at flag definitions in [image_generation.py](/image_generatio
 #### Can I use my dataset?
 
 Please take a look at [use your dataset](use_your_dataset.md).
-
-#### Why RANDOM_CROP?
 

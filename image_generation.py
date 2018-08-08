@@ -136,7 +136,7 @@ tf.flags.DEFINE_integer(
 ##############################
 
 tf.flags.DEFINE_integer(
-  'eval_every_n_iter_in_training', 5000,
+  'eval_every_n_iter_in_training', 0,
   'Every n iteration, do evaluation on the generated output.')
 
 tf.flags.DEFINE_boolean(
