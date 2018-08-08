@@ -100,3 +100,18 @@ Please take a look at flag definitions in [image_generation.py](/image_generatio
 
 Please take a look at [use your dataset](use_your_dataset.md).
 
+#### Can I use multiple GPUs?
+
+Yes, but the code does not officially support multi-gpu training and you may encounter some bugs.
+
+To train with two GPUs on the same machine, you can add the following flags:
+```
+--sync_replicas=False
+--replicas_to_aggregate=1
+--num_clones=2
+--worker_replicas=1
+```
+
+Note that the batch size is **per GPU**, therefore a batch size of 8 on two GPUs will be in effect batch size 16.
+
+To only use one of the GPUs during training, you can make only gpu0 visible to tensorflow by adding `CUDA_VISIBLE_DEVICES=0`
