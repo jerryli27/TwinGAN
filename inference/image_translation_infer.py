@@ -29,6 +29,9 @@ import os
 import numpy as np
 import tensorflow as tf
 
+import sys, os
+sys.path.append('./')
+
 import util_io
 
 
