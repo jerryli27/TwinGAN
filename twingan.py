@@ -69,14 +69,14 @@ tf.flags.DEFINE_float('distillation_start_hw', 16,
 ##############
 
 tf.flags.DEFINE_float(
-  'l_cyc_weight', 0.1,
+  'l_cyc_weight', 1.0,
   'Weight of the cycle consistency loss term where the encoder-decoder acts as an identity function for inputs and '
   'outputs belonging to the same domain. Used for cross-domain GAN models.')
 tf.flags.DEFINE_boolean(
   'do_l_cyc_gan', True,
   'If true, add GAN loss on cycle output G(E(x)).')
 tf.flags.DEFINE_float(
-  'l_content_weight', 1.0,
+  'l_content_weight', 0.1,
   'Weight of the content embedding loss term. L = E(x) - E(G(E(x)))')
 
 ##############################

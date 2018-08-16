@@ -32,6 +32,9 @@ python pggan_runner.py
 --pggan_max_num_channels=256
 --generator_norm_type=batch_renorm
 --hw_to_batch_size="{4: 8, 8: 8, 16: 8, 32: 8, 64: 8, 128: 4, 256: 3, 512: 2}"
+--do_pixel_norm=True
+--l_content_weight=0.1
+--l_cycle_weight=1.0
 ```
 
 Training to resolution 32x32 takes approximately half a day depending on the hardware. Full training to 256x256 can take up to a week or two.
@@ -65,6 +68,7 @@ python pggan_runner.py
 --gradient_penalty_lambda=0.25
 --pggan_max_num_channels=512  # 256 also works emperically.
 --generator_norm_type=batch_renorm
+--do_pixel_norm=True
 ```
 
 
