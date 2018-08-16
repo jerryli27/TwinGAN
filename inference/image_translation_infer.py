@@ -24,10 +24,13 @@ python inference/image_translation_infer.py \
 --output_image_path="PATH/TO/IMAGE.JPG"
 """
 
+import sys
 import os
+sys.path.append('./')
 
 import numpy as np
 import tensorflow as tf
+
 
 import util_io
 
