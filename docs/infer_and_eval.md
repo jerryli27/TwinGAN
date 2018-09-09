@@ -5,6 +5,8 @@ We provide two pre-trained models: [human to anime](https://drive.google.com/ope
 Run the following command to translate the demo inputs. Note that this command works the best for models trained using twingan. You'll have to change this a little to make it work with image_generation models.
 
 ```
+# Make sure you're under
+
 python inference/image_translation_infer.py \
 --model_path="/PATH/TO/MODEL/"
 --image_hw=256  # 256 for anime, 128 for cats.
@@ -54,4 +56,8 @@ python image_generation.py
 --swd_save_images=False
 ```
 
+# FAQ
 
+## ModuleNotFoundError
+
+If you see `ModuleNotFoundError: No module named 'util_io'`, you're probably not under the TwinGAN directory, or you have not set PYTHONPATH correctly. See [Issue 10](https://github.com/jerryli27/TwinGAN/issues/10) and [3](https://github.com/jerryli27/TwinGAN/issues/3) for details.

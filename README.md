@@ -52,6 +52,18 @@ A lot of the code are adapted from online. Here is a non-exhaustive list of the 
 
 [PGGAN](https://github.com/tkarras/progressive_growing_of_gans/)
 
+## Anime related repos and datasets
+
+Shameless self promotion of my [AniSeg](https://github.com/jerryli27/AniSeg) anime object detection & segmentation model.
+
+Sketch coloring using [PaintsTransfer](https://github.com/lllyasviel/style2paints) and [PaintsChainer](http://paintschainer.preferred.tech/).
+
+Create anime portraits at [Crypko](https://crypko.ai/) and [MakeGirlsMoe](https://make.girls.moe/#/)
+
+The all-encompassing anime dataset [Danbooru2017](https://www.gwern.net/Danbooru2017) by gwern.
+
+My hand-curated [sketch-colored image dataset](https://github.com/jerryli27/pixiv_dataset).
+
 ## Disclaimer
 
 This personal project is developed and open sourced when I am working for Google, therefore you see Copyright 2018 Google LLC in each file. This is not an officially supported Google product. See [License](LICENSE) and [Contributing](CONTRIBUTING.md) for more details.
