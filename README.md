@@ -7,7 +7,7 @@
 
 ## Use Pretrained Model.
 
-For a pretrained model, you can download it [here](https://drive.google.com/open?id=1dXfqAODQxB2uNhyQANtZICAjwhNMWnbl):
+We provide two pre-trained models: [human to anime](https://drive.google.com/open?id=1dXfqAODQxB2uNhyQANtZICAjwhNMWnbl) and [human to cats](https://drive.google.com/open?id=1UJEqlH_1sfdmWs6MXKV4H69NGad0rdUB).
 
 Run the following command to translate the demo inputs.
 
@@ -23,6 +23,8 @@ python inference/image_translation_infer.py \
 
 The `input_image_path` can be either one single image or a path containing images.
 
+For more information, see the documentation on [inference and eval](docs/infer_and_eval.md) and on the [web interface](docs/web_interface.md).
+
 ## Training
 
 Download CelebA and the Getchu dataset by following the [datasets guide](docs/datasets.md). Then train your model using script from the [training guide](docs/training.md).
@@ -31,7 +33,7 @@ Download CelebA and the Getchu dataset by following the [datasets guide](docs/da
 
 An English [blog](docs/blog/blog_EN.md) and a [Chinese 中文 blog](docs/blog/blog_CH.md) are published in early April 2018 and are available for readers with less technical background.
 
-Please refer to [technical report](docs/tech_report/twingan.pdf) for details on the network structure and losses. The report is still work in progress.
+Please refer to the [technical report](https://arxiv.org/abs/1809.00946) for details on the network structure and losses.
 
 Extra materials:
 
@@ -43,6 +45,10 @@ Our idea of using adaptive normalization parameters for image translation is not
 
 Some key differences between our model and the two mentioned are -- we find UNet to be extremely helpful in maintaining semantic correspondence across domain, and we found that sharing all convolution filter weights speeds up training while maintaining the same output quality.
 
+
+## Documentations
+
+More documentations can be found [under docs/](docs)
 
 ## Reference
 

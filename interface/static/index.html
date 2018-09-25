@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width" />
+  
+  <title>animator</title>
+
+  <!-- filestart -->
+  <script src="jquery.min.js"></script>
+  
+  <!-- jQuery UI -->
+      <link rel="stylesheet" href="jquery-ui.css">
+      <script src="jquery-ui.min.js"></script>
+
+      <!-- bootstrap -->
+      <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+      <script src="bootstrap/js/bootstrap.min.js"></script>
+
+      <!-- main -->
+      <script type="text/javascript" src="animator.js"></script>
+  <!-- fileend -->
+</head>
+<body>
+
+  <div id="content">
+
+    <div class="content-box">
+ 
+      <div class="navbar navbar-inverse">
+        <div class="navbar-inner">
+          <a class="brand" href="#">TwinGAN</a>
+          <ul class="nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="https://github.com/jerryli27/TwinGAN">Github</a></li>
+            <li><a href="https://arxiv.org/abs/1809.00946">Paper</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <center id="btn_pane" style="width:1250px; margin-left:auto; margin-right:auto; display:block" >
+      <pre>
+      <i class="icon-picture"></i> Set Selfie : <input id="load_selfie_file" type="file"> <button id="submit" class="btn btn-large btn-primary"><i class="icon-edit icon-white"></i> Animate</button> <span id="painting_label" style="display:none" >NOW ANIMATING ...</span>
+      </pre>
+
+      </center>
+
+      <div>
+          <center id="img_pane" style="width:1250px; margin-left:auto; margin-right:auto; display:block" >
+              <img id="background" style="max-width:512px; max-height:512px;"/>
+
+              <div id="output_panes" style="display: none;" >
+                  <div id="output_pane_0" style="width:1250px; margin-left:auto; margin-right:auto; display:block" class="output_pane">
+                      <img id="face_cropped_0" style="margin:2px; max-width:512px; max-height:512px; border:solid 1px;" src=""/>
+                      <img id="output_0" style="margin:2px; max-width:512px; max-height:512px; border:solid 1px;" src=""/>
+                      <a id="download_0" href="" download="" class="btn btn-default download-combined"><span class="glyphicon glyphicon-download"></span>Download</a>
+                  </div>
+                  <div id="output_pane_1" style="width:1250px; margin-left:auto; margin-right:auto; display:block" class="output_pane">
+                      <img id="face_cropped_1" style="margin:2px; max-width:512px; max-height:512px; border:solid 1px;" src=""/>
+                      <img id="output_1" style="margin:2px; max-width:512px; max-height:512px; border:solid 1px;" src=""/>
+                      <a id="download_1" href="" download="" class="btn btn-default download-combined"><span class="glyphicon glyphicon-download"></span>Download</a>
+                  </div>
+                  <div id="output_pane_2" style="width:1250px; margin-left:auto; margin-right:auto; display:block" class="output_pane">
+                      <img id="face_cropped_2" style="margin:2px; max-width:512px; max-height:512px; border:solid 1px;" src=""/>
+                      <img id="output_2" style="margin:2px; max-width:512px; max-height:512px; border:solid 1px;" src=""/>
+                      <a id="download_2" href="" download="" class="btn btn-default download-combined"><span class="glyphicon glyphicon-download"></span>Download</a>
+                  </div>
+                  <div id="output_pane_3" style="width:1250px; margin-left:auto; margin-right:auto; display:block" class="output_pane">
+                      <img id="face_cropped_3" style="margin:2px; max-width:512px; max-height:512px; border:solid 1px;" src=""/>
+                      <img id="output_3" style="margin:2px; max-width:512px; max-height:512px; border:solid 1px;" src=""/>
+                      <a id="download_3" href="" download="" class="btn btn-default download-combined"><span class="glyphicon glyphicon-download"></span>Download</a>
+                  </div>
+              </div>
+
+          </center>
+
+      </div>
+      <div style="width:1250px; margin-left:auto; margin-right:auto;">
+      <br/>
+      <div style= "margin-left:40px; ">
+        <ul>
+         <li>1: select image with human faces<br>(gif & png with a ch is not supported)</li>
+         <li>3: Push animate button </li>
+        </ul>
+      </div>
+ 
+     <script type="text/javascript">
+     </script>
+    </div>
+  </div>
+  </div>
+
+  
+</body>
+</html>
