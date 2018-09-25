@@ -39,6 +39,9 @@ python pggan_runner.py
 
 Training to resolution 32x32 takes approximately half a day depending on the hardware. Full training to 256x256 can take up to a week or two.
 
+Results up to 64x64 tends to be quite stable. Unfortunately at 256x256 training becomes quite unstable due to small batch size and you may need to adjust hyperparameters such as `gradient_penalty_lambda` and `learning_rate`  **during** training (which is what I did for the best model). I did not spend much effort finding the optimal set of hyperparameters due to limits in hardware and time.
+
+
 ## PGGAN
 
 Different from TwinGAN, PGGAN is a generative model. That is to say, there is no "source image". It generates real-looking images from scratch conditioned on a random vector. Please read the [PGGAN paper](https://arxiv.org/abs/1710.10196) for more details. Note that we do not provide a completely faithful reproduction of the PGGAN paper. We do borrow their network structure as-is.
@@ -106,7 +109,7 @@ Please take a look at [use your dataset](use_your_dataset.md).
 
 #### Can I use multiple GPUs?
 
-Yes, but the code does not officially support multi-gpu training and you may encounter some bugs.
+Yes, but the code does not officially support multi-gpu training and you may encounter some bugs. All models provided in this repo are trained on 1 GPU.
 
 To train with two GPUs on the same machine, you can add the following flags:
 ```
