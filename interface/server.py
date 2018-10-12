@@ -37,6 +37,7 @@ tf.flags.DEFINE_integer('gpu', -1,
 tf.flags.DEFINE_integer('port', 8000, 'Port of this server.')
 tf.flags.DEFINE_string('host', '', 'Host of this server. Defaults to localhost')
 tf.flags.DEFINE_integer('max_num_faces', 4, 'Maximum number of faces to detect and translate.')
+tf.flags.DEFINE_boolean('debug', False, 'If true, use the mock twingan client for debugging.')
 
 FLAGS = tf.flags.FLAGS
 
@@ -82,6 +83,17 @@ class MyHandler(CGIHTTPServer.CGIHTTPRequestHandler):
       print('TODO: do action for register download for id: %s and subid: %s' % (id_str, subid_str))
       self.post_success(id_str, )
       return
+
+    if 'detectFace' in form and form['detectFace']:
+      if 'image' not in form:
+        self.post_server_internal_error('Missing image for detectFace mode.', id_str, {})
+        return
+      bin1 = form['image'][0]
+      image_np = interface_utils.base64_to_numpy(bin1,contains_format=True)
+      image_face_marked, face_found = FACE_DETECTOR.mark_face(image_path=None, image_np=image_np)
+      self.post_success(id_str, {'image': interface_utils.numpu_to_base64(image_face_marked), 'face_found': face_found})
+      return
+
 
     elif 'image' in form:
       bin1 = form['image'][0]
@@ -252,9 +264,14 @@ class MyHandler(CGIHTTPServer.CGIHTTPRequestHandler):
 
 def main(_):
   global DT_CLIENT
-  DT_CLIENT = twingan_client.TwinGANClient(
-    FLAGS.twingan_server, FLAGS.image_hw,
-    concurrency=FLAGS.concurrency)
+  if FLAGS.debug:
+    DT_CLIENT = twingan_client.MockTwinGANClient(
+      FLAGS.twingan_server, FLAGS.image_hw,
+      concurrency=FLAGS.concurrency)
+  else:
+    DT_CLIENT = twingan_client.TwinGANClient(
+      FLAGS.twingan_server, FLAGS.image_hw,
+      concurrency=FLAGS.concurrency)
 
   print 'GPU: {}'.format(FLAGS.gpu)
   httpd = BaseHTTPServer.HTTPServer((FLAGS.host, FLAGS.port), MyHandler)

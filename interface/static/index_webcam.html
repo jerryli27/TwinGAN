@@ -16,12 +16,12 @@
       <!-- bootstrap -->
       <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
       <script src="bootstrap/js/bootstrap.min.js"></script>
+	    <!-- include the Webcam.js JavaScript Library -->
+	    <script type="text/javascript" src="webcam.min.js"></script>
 
       <!-- main -->
       <script type="text/javascript" src="animator.js"></script>
-	    <!-- include the Webcam.js JavaScript Library -->
-	    <!--<script type="text/javascript" src="webcam.min.js"></script>-->
-	    <!--<script type="text/javascript" src="webcam_utils.js"></script>-->
+	    <script type="text/javascript" src="webcam_utils.js"></script>
 
   <!-- fileend -->
 </head>
@@ -49,7 +49,13 @@
 	    <div id="visualize_face_block">
         <img id="visualize_face">
       </div>
-      <i class="icon-picture"></i> Set Selfie : <input id="load_selfie_file" type="file"> <button id="submit" class="btn btn-large btn-primary"><i class="icon-edit icon-white"></i> Animate</button> <span id="painting_label" style="display:none" >NOW ANIMATING ...</span>
+      <form>
+          <input type=button value="Take Snapshot" onClick="take_snapshot()">
+      </form>
+        <!--<input type=button value="Show detected faces" onClick="start_detect_face()">-->
+        <!--<input type=button value="Hide detected faces" onClick="stop_detect_face()">-->
+      <!--<i class="icon-picture"></i> Set Selfie : <input id="load_selfie_file" type="file"> <button id="submit" class="btn btn-large btn-primary"><i class="icon-edit icon-white"></i> Animate</button> -->
+        <!--<span id="painting_label" style="display:none" >NOW ANIMATING ...</span>-->
       </pre>
 
       </center>
@@ -57,7 +63,7 @@
       <div>
           <center id="img_pane" style="width:1250px; margin-left:auto; margin-right:auto; display:block" >
             <!-- Temporarily hiding this.-->
-              <img id="background" style="max-width:512px; max-height:512px;"/>
+              <img id="background" style="max-width:512px; max-height:512px; display:none"/>
 
               <div id="output_panes" style="display: none;" >
                   <div id="output_pane_0" style="width:1250px; margin-left:auto; margin-right:auto; display:block" class="output_pane">

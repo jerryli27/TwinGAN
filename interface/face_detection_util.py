@@ -7,6 +7,7 @@ import numpy as np
 import tensorflow as tf
 
 from interface import label_map_util
+from interface.object_detection_lib import visualization_utils
 import util_io
 import util_misc
 
@@ -17,6 +18,7 @@ PATH_TO_CKPT = '../model/frozen_inference_graph_face.pb'
 PATH_TO_LABELS = './protos/face_label_map.pbtxt'
 
 NUM_CLASSES = 2
+MIN_SCORE_THRESH = 0.7
 
 
 def crop_by_category(image,
@@ -26,7 +28,7 @@ def crop_by_category(image,
                      category_index,
                      category_to_crop,
                      max_boxes_to_draw=20,
-                     min_score_thresh=.7,
+                     min_score_thresh=MIN_SCORE_THRESH,
                      left_w_ratio=0.5, right_w_ratio=0.5, top_h_ratio=1.0, bottom_h_ratio=0.3):
   """Crop the given image with boxes and return cropped images.
 
@@ -76,6 +78,8 @@ def crop_by_category(image,
       xmax_expanded, ymax_expanded = expanded_xywh[0] + expanded_xywh[2], expanded_xywh[1] + expanded_xywh[3]
 
       ret.append(image[ymin_expanded:ymax_expanded, xmin_expanded:xmax_expanded])
+    elif scores[i] < min_score_thresh:
+      break
     i += 1
   return ret
 
@@ -109,14 +113,16 @@ class FaceDetector(object):
         self.face_category_index = item['id']
         break
     assert self.face_category_index
-
-  def crop_face(self, image_path):
+    
+  def _helper(self, image_path, image_np=None):
     """
 
     :param image_path: Path to an image with human faces.
+    :param image_np: Optional numpy array containing image in [h,w,c] format. Overrides image_path.
     :return: cropped faces as a list of numpy arrays
     """
-    image_np = util_io.imread(image_path)
+    if image_np is None:
+      image_np = util_io.imread(image_path)
     # the array based representation of the image will be used later in order to prepare the
     # result image with boxes and labels on it.
     # Expand dimensions since the model expects images to have shape: [1, None, None, 3]
@@ -135,6 +141,17 @@ class FaceDetector(object):
       feed_dict={image_tensor: image_np_expanded})
     elapsed_time = time.time() - start_time
     print('Face cropping inference time cost: {}'.format(elapsed_time))
+    
+    return (image_np, boxes, scores, classes, num_detections)
+
+  def crop_face(self, image_path, image_np=None):
+    """
+
+    :param image_path: Path to an image with human faces.
+    :param image_np: Optional numpy array containing image in [h,w,c] format. Overrides image_path.
+    :return: cropped faces as a list of numpy arrays
+    """
+    (image_np, boxes, scores, classes, num_detections) = self._helper(image_path, image_np=image_np)
 
     return crop_by_category(
       image_np,
@@ -144,6 +161,27 @@ class FaceDetector(object):
       self.category_index,
       category_to_crop=self.face_category_index
     )
+  
+  def mark_face(self, image_path, image_np=None):
+    """Returns the image with boxes drawn around faces.
+
+    :param image_path: Path to an image with human faces.
+    :param image_np: Optional numpy array containing image in [h,w,c] format. Overrides image_path.
+    :return: cropped faces as a list of numpy arrays
+    """
+    (image_np, boxes, scores, classes, num_detections) = self._helper(image_path, image_np=image_np)
+    ret = np.copy(image_np)
+    ret = visualization_utils.visualize_boxes_and_labels_on_image_array(
+      ret,
+      np.squeeze(boxes),
+      np.squeeze(classes).astype(np.int32),
+      np.squeeze(scores),
+      self.category_index,
+      min_score_thresh=MIN_SCORE_THRESH,
+      use_normalized_coordinates=True,
+    )
+    face_found = bool(scores[0][0] >= MIN_SCORE_THRESH)
+    return ret, face_found
 
   def crop_face_and_save(self, image_path, save_image_pattern):
     cropped = self.crop_face(image_path)

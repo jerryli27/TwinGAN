@@ -42,7 +42,7 @@ tf.flags.mark_flag_as_required('twingan_server')
 FLAGS = tf.flags.FLAGS
 
 
-class TwinGANClient():
+class TwinGANClient(object):
 
   def __init__(self, hostport, image_hw, model_spec_name='test', model_spec_signature_name='serving_default',
                concurrency=1, ):
@@ -139,6 +139,19 @@ class TwinGANClient():
   def block_on_callback(self, output_dir):
     while not os.path.exists(output_dir):
       time.sleep(0.001)
+
+
+class MockTwinGANClient(TwinGANClient):
+  """Returns the same image regardless of the input. Used for debugging."""
+  def __init__(self, hostport, image_hw, **kwargs):
+    super(MockTwinGANClient, self).__init__(hostport, image_hw,**kwargs)
+    self.mock_output_image = util_io.imread('static/images/mock/mock_twingan_output.png',
+                                            shape=(image_hw,image_hw))
+
+  def do_inference(self, output_dir, image_path=None, image_np=None):
+    util_io.imsave(output_dir, self.mock_output_image)
+    return output_dir
+
 
 
 def main(_):

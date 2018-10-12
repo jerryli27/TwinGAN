@@ -3,6 +3,7 @@ import base64
 import io
 import os
 import time
+from io import BytesIO
 
 import numpy as np
 from PIL import Image
@@ -46,4 +47,12 @@ def base64_to_numpy(base64_text, contains_format=False):
     ret = ret.split(',')[1]
   ret = base64.b64decode(ret.encode())
   ret = np.asarray(Image.open(io.BytesIO(ret)))
+  return ret
+
+def numpu_to_base64(image_np, format="JPEG"):
+  pil_img = Image.fromarray(image_np)
+  buff = BytesIO()
+  pil_img.save(buff, format=format)
+  b64 = base64.b64encode(buff.getvalue()).decode("utf-8")
+  ret = u'data:image/%s;base64,%s' %(format, b64)
   return ret
