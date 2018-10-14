@@ -106,6 +106,9 @@ class MyHandler(CGIHTTPServer.CGIHTTPRequestHandler):
         faces = faces[FLAGS.max_num_faces]
         num_faces = FLAGS.max_num_faces
       if num_faces == 0:
+        if 'failOnMissingFace' in form and form['failOnMissingFace']:
+          self.post_success(id_str, {'face_found': False})
+          return
         shutil.copy(input_image_path, './static/images/cropped_faces/' + id_str + '_%d.png' % 0)
         faces = [util_io.imread(input_image_path, (FLAGS.image_hw, FLAGS.image_hw))]
         num_faces = len(faces)
@@ -141,7 +144,7 @@ class MyHandler(CGIHTTPServer.CGIHTTPRequestHandler):
         self.post_server_internal_error('Combine original and transferred failed.', id_str, {'num_faces': num_faces})
         return
 
-      self.post_success(id_str, {'num_faces': num_faces})
+      self.post_success(id_str, {'num_faces': num_faces, 'face_found': True})
     else:
       self.post_bad_request('Post request must contain image.', id_str)
     return

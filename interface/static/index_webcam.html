@@ -50,16 +50,15 @@
         <img id="visualize_face">
       </div>
       <form>
-          <input type=button value="Take Snapshot" onClick="take_snapshot()">
+          <input id="start_face_detection_btn" type=button value="Take Snapshot" onClick="switch_face_detection()">
+          <input id="pause_face_detection_btn" type=button value="Pause" onClick="switch_face_detection()" style="display:none">
       </form>
         <!--<input type=button value="Show detected faces" onClick="start_detect_face()">-->
         <!--<input type=button value="Hide detected faces" onClick="stop_detect_face()">-->
       <!--<i class="icon-picture"></i> Set Selfie : <input id="load_selfie_file" type="file"> <button id="submit" class="btn btn-large btn-primary"><i class="icon-edit icon-white"></i> Animate</button> -->
         <!--<span id="painting_label" style="display:none" >NOW ANIMATING ...</span>-->
       </pre>
-
       </center>
-
       <div>
           <center id="img_pane" style="width:1250px; margin-left:auto; margin-right:auto; display:block" >
             <!-- Temporarily hiding this.-->

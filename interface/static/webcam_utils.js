@@ -3,20 +3,35 @@
 let timer = null;
 let face_detection_active = false;
 
-take_snapshot_success_callback = (src, face_found) => {
-  if (face_found) {
-    select_src(src);
-  } else {
-    take_snapshot();
+// take_snapshot_success_callback = (src, face_found) => {
+//   if (face_found) {
+//     select_src(src);
+//   } else {
+//     take_snapshot();
+//   }
+// };
+
+take_snapshot = () => {
+  if (face_detection_active) {
+    Webcam.snap( function(data_uri) {
+      // Assumes dependencies on animator.js
+      twinGANContinuous(data_uri, take_snapshot);
+    } );
   }
 };
 
-take_snapshot = () => {
-  Webcam.snap( function(data_uri) {
-    // Assumes dependencies on animator.js
-    detectFace(data_uri, take_snapshot_success_callback);
-  } );
-};
+switch_face_detection = () => {
+  if (face_detection_active) {
+    face_detection_active = false;
+    $("#start_face_detection_btn").show();
+    $("#pause_face_detection_btn").hide();
+  } else {
+    face_detection_active = true;
+    $("#start_face_detection_btn").hide();
+    $("#pause_face_detection_btn").show();
+    take_snapshot();
+  }
+}
 
 // This version takes one image regardless of face detection result.
 // take_snapshot = () => {
