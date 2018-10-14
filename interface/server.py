@@ -217,12 +217,12 @@ class MyHandler(CGIHTTPServer.CGIHTTPRequestHandler):
     return succeed, paths
 
   @staticmethod
-  def domain_transfer(transferred_image_file_format, images):
+  def domain_transfer(transferred_image_file_format, images, skip_existing_images=False):
     ret = []
     for i, image in enumerate(images):
       image_path = transferred_image_file_format % i
       ret.append(image_path)
-      if os.path.exists(image_path):
+      if skip_existing_images and os.path.exists(image_path):
         continue
       DT_CLIENT.do_inference(image_path, image_np=image)
       DT_CLIENT.block_on_callback(image_path)
