@@ -33,6 +33,12 @@ Download CelebA and the Getchu dataset by following the [datasets guide](docs/da
 
 An English [blog](docs/blog/blog_EN.md) and a [Chinese 中文 blog](docs/blog/blog_CH.md) are published in early April 2018 and are available for readers with less technical background.
 
+Network setup:
+![network_structure](docs/images/TwinGAN Diagram.png)
+
+Conv layer structure:
+![network_structure](docs/images/TwinGAN Diagram conv layer.png)
+
 Please refer to the [technical report](https://arxiv.org/abs/1809.00946) for details on the network structure and losses.
 
 Extra materials:
