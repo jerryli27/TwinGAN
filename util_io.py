@@ -19,7 +19,7 @@ import random
 from os.path import dirname
 
 import numpy as np
-import scipy.misc
+import imageio
 import tensorflow as tf
 from PIL import Image
 from typing import Union
@@ -132,7 +132,7 @@ def imsave(path, img):
   img = np.clip(img, 0, 255).astype(np.uint8)
   if len(img.shape) == 3 and img.shape[-1] == 1:
     img = np.squeeze(img, -1)
-  scipy.misc.imsave(path, img)
+  imageio.imwrite(path, img)
 
 
 def save_float_image(filename, img):
